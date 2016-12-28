@@ -1,9 +1,0 @@
-hello\configuration\WebConfig.class
-hello\configuration\WebSecurityConfig.class
-hello\model\Student.class
-hello\controller\AuthorizationController.class
-hello\Application.class
-hello\persistence\StudentMapper.class
-hello\controller\StudentsController.class
-hello\model\Authorization.class
-hello\configuration\PersistenceConfig.class
