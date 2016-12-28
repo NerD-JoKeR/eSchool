@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="static/signin.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div th:if="${not #lists.isEmpty(studentsList)}">
+        <table class="table table-hover">
+            <caption>Список учеников</caption>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Номер телефона</th>
+                <th>Логин</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${studentsList}">
+                <td th:text="${student.id}"/>
+                <td th:text="${student.name}"/>
+                <td th:text="${student.surname}"/>
+                <td th:text="${student.phoneNumber}"/>
+                <td th:text="${student.eMail}"/>
+                <td>
+                    <a th:href="@{/deleteStudent/{studentId}(studentId = ${student.id})}">
+                        <button type="button" class="btn btn-danger">Удалить</button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+                <td>
+                    <a th:href="@{/addStudent}">
+                        <button type="button" class="btn btn-success">Добавить</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${#lists.isEmpty(studentsList)}">
+        <h2>Список пуст</h2>
+        <a th:href="@{/addStudent}">
+            <button type="button" class="pull-right btn btn-success">Добавить</button>
+        </a>
+    </div>
+</div><!-- /container -->
+</body>
+</html>
