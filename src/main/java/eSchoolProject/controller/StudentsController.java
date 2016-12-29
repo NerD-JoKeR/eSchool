@@ -1,7 +1,7 @@
-package hello.controller;
+package eSchoolProject.controller;
 
-import hello.model.Student;
-import hello.persistence.StudentMapper;
+import eSchoolProject.model.Student;
+import eSchoolProject.persistence.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

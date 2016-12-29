@@ -1,7 +1,6 @@
-package hello.controller;
+package eSchoolProject.controller;
 
-import hello.configuration.WebSecurityConfig;
-import hello.model.Authorization;
+import eSchoolProject.model.Authorization;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +17,5 @@ public class AuthorizationController {
     public String authorizationForm(Model model) {
         model.addAttribute("authorization", new Authorization());
         return "login";
-    }
-
-    @PostMapping("/login")
-    public String authorizationSumbit(@ModelAttribute Authorization authorization) {
-        return "redirect:/studentsList";
     }
 }

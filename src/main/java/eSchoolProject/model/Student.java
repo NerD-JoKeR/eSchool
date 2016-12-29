@@ -1,4 +1,4 @@
-package hello.model;
+package eSchoolProject.model;
 
 import java.io.Serializable;
 

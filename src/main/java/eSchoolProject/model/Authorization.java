@@ -1,4 +1,4 @@
-package hello.model;
+package eSchoolProject.model;
 
 /**
  * Created by JoKeR on 24.12.2016.

@@ -1,7 +1,6 @@
-package hello.controller;
+package eSchoolProject.persistence;
 
-import hello.model.Student;
-import hello.persistence.StudentMapper;
+import eSchoolProject.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -18,7 +17,7 @@ import java.util.List;
 @DirtiesContext
 public class TestStudentMapper extends AbstractTestNGSpringContextTests {
 
-    @Autowired //mynau sen ushin obyekt sozdavat etip beredi
+    @Autowired
     private StudentMapper studentMapper;
 
 
@@ -27,9 +26,8 @@ public class TestStudentMapper extends AbstractTestNGSpringContextTests {
     @Test
     public void testStudentsList() throws Exception {
         List<Student> studentsList = studentMapper.getAllStudents();
-        Assert.assertNotNull(studentsList); //NOT NULL
-        Assert.assertTrue(studentsList.size() >= 0); // BAZADAN KELGEN STUDENTTERDIN SANY 0 nemese kop bolu kerek
-        //sonda myna test eki assert birden zhasaidy
+        Assert.assertNotNull(studentsList);
+        Assert.assertTrue(studentsList.size() >= 0);
     }
 
     @Test
@@ -42,12 +40,11 @@ public class TestStudentMapper extends AbstractTestNGSpringContextTests {
         student.seteMail("zxcv@bnm");
         studentMapper.insertStudent(student);
         Assert.assertNotEquals(size, studentMapper.getAllStudents().size());
-        Assert.assertEquals(studentMapper.getAllStudents().size(), size + 1);// 2 emes!!!! sen bilmeisin goi nachalniy size kansha bolatynyn
+        Assert.assertEquals(studentMapper.getAllStudents().size(), size + 1);
     }
 
     @Test
     public void testDeleteStudent() {
-        //men alip tastagan narse zhogardy metodta zhazlyp tur kerek zhok ol tekseru
         Student student = new Student();
         student.setName("asdf");
         student.setSurname("qwerty");
@@ -58,17 +55,14 @@ public class TestStudentMapper extends AbstractTestNGSpringContextTests {
         List<Student> students  =  studentMapper.getAllStudents();
         Student student1 = students.get(0);
 
-        //SIZE DO UDAENIYA
-        int sizeBeforeDelete = studentMapper.getAllStudents().size(); //10
+        int sizeBeforeDelete = studentMapper.getAllStudents().size();
 
-        //DELELTE
         studentMapper.deleteStudent(student1.getId());
 
-        //SIZE POSLE UDALENIYA
-        int sizeAfterDelete = studentMapper.getAllStudents().size(); //9
+        int sizeAfterDelete = studentMapper.getAllStudents().size();
 
         Assert.assertEquals(sizeAfterDelete, sizeBeforeDelete - 1);
-        Assert.assertNotEquals(sizeBeforeDelete, sizeAfterDelete);// ok zapusti
+        Assert.assertNotEquals(sizeBeforeDelete, sizeAfterDelete);
 
     }
 }

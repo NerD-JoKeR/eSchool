@@ -1,4 +1,4 @@
-package hello.configuration;
+package eSchoolProject.configuration;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -30,8 +30,8 @@ public class PersistenceConfig {
         System.out.println("Creating tables");
         jdbcTemplate.execute("DROP TABLE IF EXISTS students");
         jdbcTemplate.execute("create table students(id serial, groupId int(50), name varchar(256), surname varchar(256), phoneNumber varchar(256), eMail varchar(256))");
-        jdbcTemplate.update("INSERT INTO students(groupId, name, surname, phoneNumber, email) values ('11', 'Mike', 'Lanyon', '+78889994455', 'lanyonm@gmail.com')");
-        jdbcTemplate.update("INSERT INTO students(groupId, name, surname, phoneNumber, email) values ('11', 'Mike', 'Lanyon', '+78889994455', 'lanyonm@gmail.com')");
+        jdbcTemplate.update("INSERT INTO students(groupId, name, surname, phoneNumber, email) values ('11', 'Ruslan', 'Lee', '87779994455', 'rusleon@gmail.com')");
+        jdbcTemplate.update("INSERT INTO students(groupId, name, surname, phoneNumber, email) values ('12', 'Nursultan', 'Zholakov', '89997775544', 'nurlyzhol@gmail.com')");
 
         return dataSource;
     }
