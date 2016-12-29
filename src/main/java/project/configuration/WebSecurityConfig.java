@@ -1,4 +1,4 @@
-package eSchoolProject.configuration;
+package project.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("kanzhar@mail.ru").password("1").roles("ADMIN");
+                .withUser("admin@mail.ru").password("1").roles("ADMIN");
     }
 }

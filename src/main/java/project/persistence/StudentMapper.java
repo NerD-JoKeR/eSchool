@@ -1,6 +1,6 @@
-package eSchoolProject.persistence;
+package project.persistence;
 
-import eSchoolProject.model.Student;
+import project.model.Student;
 
 import java.util.List;
 

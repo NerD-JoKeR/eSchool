@@ -1,7 +1,7 @@
-package eSchoolProject.controller;
+package project.controller;
 
-import eSchoolProject.model.Student;
-import eSchoolProject.persistence.StudentMapper;
+import project.model.Student;
+import project.persistence.StudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +21,12 @@ public class StudentsController {
     @Autowired
     private StudentMapper studentMapper;
 
-
     @GetMapping("/studentsList")
     public String studentsList(Model model) {
         List<Student> studentsList = studentMapper.getAllStudents();
         model.addAttribute("studentsList", studentsList);
         return "studentsList";
     }
-
 
     @GetMapping("/addStudent")
     public String addStudentForm(Model model) {
@@ -42,7 +40,6 @@ public class StudentsController {
         studentMapper.insertStudent(student);
         return "redirect:/studentsList";
     }
-
 
     @GetMapping("/deleteStudent/{studentId}")
     public String deleteStudent(@PathVariable(value = "studentId") int id) {

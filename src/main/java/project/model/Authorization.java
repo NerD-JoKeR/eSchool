@@ -1,4 +1,4 @@
-package eSchoolProject.model;
+package project.model;
 
 /**
  * Created by JoKeR on 24.12.2016.

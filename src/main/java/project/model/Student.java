@@ -1,4 +1,4 @@
-package eSchoolProject.model;
+package project.model;
 
 import java.io.Serializable;
 

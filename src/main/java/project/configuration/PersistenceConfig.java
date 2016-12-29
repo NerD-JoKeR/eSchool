@@ -1,4 +1,4 @@
-package eSchoolProject.configuration;
+package project.configuration;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -14,7 +14,7 @@ import javax.sql.DataSource;
  * Created by JoKeR on 27.12.2016.
  */
 @Configuration
-@MapperScan("hello.persistence")
+@MapperScan("project.persistence")
 public class PersistenceConfig {
 
     @Bean
@@ -45,7 +45,7 @@ public class PersistenceConfig {
     public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setTypeAliasesPackage("hello");
+        sessionFactory.setTypeAliasesPackage("project");
         return sessionFactory;
     }
 }

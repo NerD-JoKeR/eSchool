@@ -1,6 +1,6 @@
-package eSchoolProject.persistence;
+package project.persistence;
 
-import eSchoolProject.model.Student;
+import project.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -19,9 +19,6 @@ public class TestStudentMapper extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private StudentMapper studentMapper;
-
-
-
 
     @Test
     public void testStudentsList() throws Exception {
