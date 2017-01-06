@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="BaseWithNavigation">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/signin.css" rel="stylesheet"/>
+    <link href="../static/style.css" rel="stylesheet"/>
+
+    <script src="../static/jquery-3.1.1.min.js"></script>
+    <script>
+    /*<![CDATA[*/
+        //When DOM loaded we attach click event to button
+        $(document).ready(function() {
+            //attach keypress to input
+            $("#homeId").keydown(function(event) {
+                // Allow special chars + arrows
+                if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9
+                    || event.keyCode == 27 || event.keyCode == 13
+                    || (event.keyCode == 65 && event.ctrlKey === true)
+                    || (event.keyCode >= 35 && event.keyCode <= 39)){
+                        return;
+                }else {
+                    // If it's not a number stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                        event.preventDefault();
+                    }
+                }
+            });
+        });
+    /*]]>*/
+    </script>
+</head>
+<body>
+<div layout:fragment="body">
+    <form class="form-horizontal" action="#" th:action="@{/editAddress}" th:object="${address}" method="post">
+        <input type="hidden" th:field="*{id}" value="${id}"/>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Добавление нового адреса</label>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Страна</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{country}" placeholder="Страна" value="${country}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Город</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{city}" placeholder="Город" value="${city}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Улица</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{street}" placeholder="Улица" value="${street}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Дом(квартира)</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="homeId" th:field="*{home}"
+                       placeholder="Дом(квартира)" value="${home}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success disable">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

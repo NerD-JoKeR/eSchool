@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="static/style.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div layout:fragment="navBarFragment" class="navBarFragment">
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand navBarItem" href="#">E-School</a>
+                    <a class="navbar-brand navBarItem" href="/studentsList" th:href="@{/studentsList}">Список учеников</a>
+                    <a class="navbar-brand navBarItem" href="/addressesList" th:href="@{/addressesList}">Список адресов</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/logout" th:href="@{/logout}">Выйти</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div layout:fragment="body"></div>
+</body>
+</html>

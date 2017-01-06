@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="BaseWithNavigation">
 <head>
     <!-- Bootstrap core CSS -->
     <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
     <link href="static/signin.css" rel="stylesheet"/>
+    <link href="static/style.css" rel="stylesheet"/>
 
     <script src="static/jquery-3.1.1.min.js"></script>
     <script>
     /*<![CDATA[*/
         //When DOM loaded we attach click event to button
         $(document).ready(function() {
-
             //attach keypress to input
             $("#phoneId").keydown(function(event) {
                 // Allow special chars + arrows
@@ -28,45 +29,107 @@
                     }
                 }
             });
+             $('.form-horizontal').each(function(){
+            // Объявляем переменные (форма и кнопка отправки)
+            var form = $(this),
+                btn = form.find('.btn btn-success');
 
+            // Добавляем каждому проверяемому полю, указание что поле пустое
+            form.find('.form-control').addClass('empty_field');
+
+            // Функция проверки полей формы
+            function checkInput(){
+              form.find('.form-control').each(function(){
+                if($(this).val() != ''){
+                  // Если поле не пустое удаляем класс-указание
+                $(this).removeClass('empty_field');
+                } else {
+                  // Если поле пустое добавляем класс-указание
+                $(this).addClass('empty_field');
+                }
+              });
+            }
+
+            // Функция подсветки незаполненных полей
+            function lightEmpty(){
+              form.find('.empty_field').css({'border-color':'#d8512d'});
+              // Через полсекунды удаляем подсветку
+              setTimeout(function(){
+                form.find('.empty_field').removeAttr('style');
+              },500);
+            }
+
+            // Проверка в режиме реального времени
+            setInterval(function(){
+              // Запускаем функцию проверки полей на заполненность
+              checkInput();
+              // Считаем к-во незаполненных полей
+              var sizeEmpty = form.find('.empty_field').size();
+              // Вешаем условие-тригер на кнопку отправки формы
+              if(sizeEmpty > 0){
+                if(btn.hasClass('disabled')){
+                  return false
+                } else {
+                  btn.addClass('disabled')
+                }
+              } else {
+                btn.removeClass('disabled')
+              }
+            },500);
+
+            // Событие клика по кнопке отправить
+            btn.click(function(){
+              if($(this).hasClass('disabled')){
+                // подсвечиваем незаполненные поля и форму не отправляем, если есть незаполненные поля
+                lightEmpty();
+                return false
+              } else {
+                // Все хорошо, все заполнено, отправляем форму
+                form.submit();
+              }
+            });
+          });
         });
     /*]]>*/
     </script>
 </head>
 <body>
-<form class="form-horizontal" action="#" th:action="@{/addStudent}" th:object="${student}" method="post">
-    <div class="form-group">
-        <label class="col-sm-4 control-label">Добавление нового ученика</label>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Имя</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" th:field="*{name}" placeholder="Имя"/>
+<div layout:fragment="body">
+    <form class="form-horizontal" action="#" th:action="@{/addStudent}" th:object="${student}" method="post">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Добавление нового ученика</label>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Фамилия</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" th:field="*{surname}" placeholder="Фамилия"/>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Имя</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Имя"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Номер телефона</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" id="phoneId" th:field="*{phoneNumber}" placeholder="Номер телефона"/>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Фамилия</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{surname}" placeholder="Фамилия"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Логин</label>
-        <div class="col-sm-6">
-            <input type="email" class="form-control" th:field="*{eMail}" placeholder="Логин"/>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Номер телефона</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="phoneId" th:field="*{phoneNumber}"
+                       placeholder="Номер телефона"/>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Добавить</button>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Логин</label>
+            <div class="col-sm-6">
+                <input type="email" class="form-control" th:field="*{eMail}" placeholder="Логин"/>
+            </div>
         </div>
-    </div>
-</form>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success disable">Добавить</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

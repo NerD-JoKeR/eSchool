@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="BaseWithNavigation">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Данные студента</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/signin.css" rel="stylesheet"/>
+    <link href="../static/style.css" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="body">
+    <div class="container">
+        <div>
+            <table class="table table-hover">
+                <caption><h3>Данные студента</h3></caption>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Номер телефона</th>
+                    <th>Логин</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student : ${student}">
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.surname}"></td>
+                    <td th:text="${student.phoneNumber}"></td>
+                    <td th:text="${student.eMail}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table table-hover">
+                <caption><h3>Адреса студента</h3></caption>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Страна</th>
+                    <th>Город</th>
+                    <th>Улица</th>
+                    <th>Дом(квартира)</th>
+                    <th>ID студента</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="address : ${addresses}">
+                    <td th:text="${address.id}"/>
+                    <td th:text="${address.country}"/>
+                    <td th:text="${address.city}"/>
+                    <td th:text="${address.street}"/>
+                    <td th:text="${address.home}"/>
+                    <td th:text="${address.studentId}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- /container -->
+</div>
+</body>
+</html>

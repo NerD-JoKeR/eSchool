@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="BaseWithNavigation">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="../static/signin.css" rel="stylesheet"/>
+    <link href="../static/style.css" rel="stylesheet"/>
+
+    <script src="../static/jquery-3.1.1.min.js"></script>
+    <script>
+    /*<![CDATA[*/
+        //When DOM loaded we attach click event to button
+        $(document).ready(function() {
+            //attach keypress to input
+            $("#phoneId").keydown(function(event) {
+                // Allow special chars + arrows
+                if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9
+                    || event.keyCode == 27 || event.keyCode == 13
+                    || (event.keyCode == 65 && event.ctrlKey === true)
+                    || (event.keyCode >= 35 && event.keyCode <= 39)){
+                        return;
+                }else {
+                    // If it's not a number stop the keypress
+                    if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                        event.preventDefault();
+                    }
+                }
+            });
+        });
+    /*]]>*/
+    </script>
+</head>
+<body>
+<div layout:fragment="body">
+    <form class="form-horizontal" action="#" th:action="@{/editStudent}" th:object="${student}" method="post">
+        <input type="hidden" th:field="*{id}" value="${id}"/>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Добавление нового ученика</label>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Имя</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Имя" value="${name}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Фамилия</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{surname}" placeholder="Фамилия" value="${surname}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Номер телефона</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="phoneId" th:field="*{phoneNumber}"
+                       placeholder="Номер телефона" value="${phoneNumber}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Логин</label>
+            <div class="col-sm-6">
+                <input type="email" class="form-control" th:field="*{eMail}" placeholder="Логин" value="${eMail}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success disable">Сохранить</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

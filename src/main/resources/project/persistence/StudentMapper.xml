@@ -6,6 +6,17 @@
         SELECT id, groupId, name, surname, phoneNumber, eMail FROM students
     </select>
 
+    <select id="getStudentById" parameterType="int" resultType="Student">
+        SELECT * FROM students
+        WHERE id = #{id}
+    </select>
+
+    <update id="updateStudent" parameterType="Student">
+        UPDATE students SET groupId = #{groupId}, name = #{name}, surname = #{surname},
+        phoneNumber = #{phoneNumber}, eMail = #{eMail}
+        WHERE id = #{id}
+    </update>
+
     <insert id="insertStudent" parameterType="Student">
         INSERT INTO students (groupId, name, surname, phoneNumber, eMail)
         VALUES (#{groupId}, #{name}, #{surname}, #{phoneNumber}, #{eMail})

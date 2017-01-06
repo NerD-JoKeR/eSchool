@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="BaseWithNavigation">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="static/signin.css" rel="stylesheet"/>
+    <link href="static/style.css" rel="stylesheet"/>
+
+    <script src="static/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div layout:fragment="body">
+    <form class="form-horizontal" action="#" th:action="@{/addAddress}" th:object="${address}" method="post">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Добавление нового адреса</label>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Страна</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{country}" placeholder="Страна"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Город</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{city}" placeholder="Город"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Улица</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" th:field="*{street}"
+                       placeholder="Улица"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Дом(квартира)</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="homeId" placeholder="Дом(квартира)" th:field="*{home}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Добавить</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

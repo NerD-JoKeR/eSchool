@@ -33,6 +33,12 @@ public class PersistenceConfig {
         jdbcTemplate.update("INSERT INTO students(groupId, name, surname, phoneNumber, email) values ('11', 'Ruslan', 'Lee', '87779994455', 'rusleon@gmail.com')");
         jdbcTemplate.update("INSERT INTO students(groupId, name, surname, phoneNumber, email) values ('12', 'Nursultan', 'Zholakov', '89997775544', 'nurlyzhol@gmail.com')");
 
+        jdbcTemplate.execute("DROP TABLE IF EXISTS addresses");
+        jdbcTemplate.execute("create table addresses(id serial, country varchar(256), city varchar(256), street varchar(256), home int(10), studentId int(10))");
+        jdbcTemplate.update("INSERT INTO addresses(country, city, street, home, studentId) values ('Kazakhstan', 'Almaty', 'Zhankozha Batyr', '14', '1')");
+        jdbcTemplate.update("INSERT INTO addresses(country, city, street, home, studentId) values ('England', 'London', 'London', '15', '2')");
+        jdbcTemplate.update("INSERT INTO addresses(country, city, street, home, studentId) values ('Russia', 'Moscow', 'Red Square', '16', '1')");
+        jdbcTemplate.update("INSERT INTO addresses(country, city, street, home, studentId) values ('Turkey', 'Ankara', 'Centre', '17', '2')");
         return dataSource;
     }
 

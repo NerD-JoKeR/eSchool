@@ -6,6 +6,7 @@ import java.io.Serializable;
  * Created by JoKeR on 26.12.2016.
  */
 public class Student implements Serializable {
+
     private int id;
     private int groupId;
     private String name;

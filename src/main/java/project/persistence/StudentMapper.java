@@ -14,6 +14,19 @@ public interface StudentMapper {
     public List<Student> getAllStudents();
 
     /**
+     * @param id
+     * @return Student
+     */
+    public Student getStudentById(int id);
+
+    /**
+     *
+     * @param student
+     * @return the number of rows affected
+     */
+    public int updateStudent(Student student);
+
+    /**
      * @param Student
      * @return the number of rows affected
      */

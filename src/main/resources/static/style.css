@@ -1,0 +1,7 @@
+.navBarFragment{
+    margin-bottom: 40px;
+}
+
+.navbar>.container .navbar-brand.navBarItem{
+    margin-left: 0px;
+}
